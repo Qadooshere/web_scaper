@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Scraper</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <div class="search-bar">
+        <form method="POST">
+            <input type="text" name="query" placeholder="Enter your search query">
+            <select name="country">
+                {% for country in countries %}
+                    <option value="{{ country.code }}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="language">
+                {% for language in languages %}
+                    <option value="{{ language.code }}">{{ language.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    <div class="search-bar">
+        <form method="POST" action="/extract_emails">
+        <!-- ... existing input fields ... -->
+        {% for link in results %}
+            <div class="result">
+                <input type="checkbox" name="selected_links" value="{{ link }}" checked>
+                <p>{{ link }}</p>
+            </div>
+        {% endfor %}
+        <button type="submit">Extract Emails</button>
+            </form>
+        </div>
+    </body>
+</html>

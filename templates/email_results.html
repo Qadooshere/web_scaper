@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Extraction Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="results">
+        <h1>Email Extraction Results</h1>
+        <table>
+            <tr>
+                <th>Website</th>
+                <th>Emails</th>
+            </tr>
+            {% for website, emails in extraction_results.items() %}
+            <tr>
+                <td>{{ website }}</td>
+                <td>
+                    <ul>
+                        {% for email in emails %}
+                        <li>{{ email }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
